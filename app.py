@@ -82,6 +82,7 @@ def Post_Msg(msg: str):
 
 @app.route("/callwet", methods=["GET"])
 def callwet():
+    global notifyed
     if notifyed == False:
         Post_Msg("正在下雨，\n請盡速收拾衣服")
         notifyed = True
@@ -89,6 +90,7 @@ def callwet():
 
 @app.route("/calldry", methods=["GET"])
 def calldry():
+    global notifyed
     if notifyed == True:
         notifyed = False
 
