@@ -84,8 +84,11 @@ def Post_Msg(msg: str):
 def callwet():
     global notifyed
     if notifyed == False:
-        Post_Msg("正在下雨，\n請盡速收拾衣服")
+        Post_Msg("外面好像正在下雨囉！\n趕快將掛在陽台的衣服收進來喔！")
         notifyed = True
+        return "傳送成功"
+    else:
+        return "已傳送過"
 
 
 @app.route("/calldry", methods=["GET"])
@@ -93,6 +96,9 @@ def calldry():
     global notifyed
     if notifyed == True:
         notifyed = False
+        return "傳送成功"
+    else:
+        return "已傳送過"
 
 
 if __name__ == "__main__":
