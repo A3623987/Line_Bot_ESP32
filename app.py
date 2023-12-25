@@ -26,6 +26,8 @@ configuration = Configuration(access_token=api)
 channel = os.getenv("CHANNEL_SECRET")
 handler = WebhookHandler(channel)
 
+notifyed = False
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=["POST"])
@@ -76,6 +78,19 @@ def Post_Msg(msg: str):
     notify = requests.post(
         "https://notify-api.line.me/api/notify", headers=headers, params=payload
     )
+
+
+@app.route("/callwet", methods=["GET"])
+def callwet():
+    if notifyed == False:
+        Post_Msg("正在下雨，\n請盡速收拾衣服")
+        notifyed = True
+
+
+@app.route("/calldry", methods=["GET"])
+def calldry():
+    if notifyed == True:
+        notifyed = False
 
 
 if __name__ == "__main__":
